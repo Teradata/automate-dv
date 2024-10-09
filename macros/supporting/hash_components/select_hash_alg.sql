@@ -73,6 +73,11 @@
 
 {% endmacro %}
 
+{% macro teradata__hash_alg_md5() -%}
+
+    {% do return("GLOBAL_FUNCTIONS.hash_md5([HASH_STRING_PLACEHOLDER])") %}
+
+{% endmacro %}
 
 {#- SHA256 -#}
 
