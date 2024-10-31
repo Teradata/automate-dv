@@ -67,3 +67,11 @@
     {%- if alias %} AS {{ alias }} {%- endif %}
 
 {%- endmacro -%}
+
+{%- macro teradata__cast_datetime(column_str, as_string=false, alias=none, date_type=none) -%}
+
+    cast({{ column_str }} AS date_type)
+
+    {%- if alias %} AS {{ alias }} {%- endif %}
+
+{%- endmacro -%}
