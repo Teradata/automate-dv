@@ -1,8 +1,8 @@
 {%- macro control_snap_v1(control_snap_v0, log_logic=none, sdts_alias=none) -%}
 
-{%- set sdts_alias = automate_dv.replace_standard(sdts_alias, 'automate_dv.sdts_alias', 'sdts') -%}
+{%- set sdts_alias = teradata_automate_dv.replace_standard(sdts_alias, 'teradata_automate_dv.sdts_alias', 'sdts') -%}
 
-{{ adapter.dispatch('control_snap_v1', 'automate_dv')(control_snap_v0=control_snap_v0,
+{{ adapter.dispatch('control_snap_v1', 'teradata_automate_dv')(control_snap_v0=control_snap_v0,
                                                                     log_logic=log_logic,
                                                                     sdts_alias=sdts_alias) }}
 
@@ -32,7 +32,7 @@
 {%- set v0_relation = ref(control_snap_v0) -%}
 {%- set ns = namespace(forever_status=FALSE) %}
 
-{%- set snapshot_trigger_column = var('automate_dv.snapshot_trigger_column', 'is_active') -%}
+{%- set snapshot_trigger_column = var('teradata_automate_dv.snapshot_trigger_column', 'is_active') -%}
 
 WITH 
 
