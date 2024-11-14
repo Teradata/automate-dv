@@ -9,7 +9,9 @@
         {%- set column_str -%} '{{ column_str }}' {%- endset -%}
     {%- endif -%}
 
-    {%- set date_type = date_type | lower -%}
+    {% if date_type %}
+        {%- set date_type = date_type | lower -%}
+    {% endif %}
 
     {{ return(adapter.dispatch('cast_datetime', 'automate_dv')(column_str=column_str, as_string=as_string, alias=alias, date_type=date_type)) }}
 {%- endmacro -%}
@@ -70,10 +72,10 @@
 
 {%- macro teradata__cast_datetime(column_str, as_string=false, alias=none, date_type=none) -%}
 
-    {% if date_type == 'none' %}
-        CAST({{ column_str }} AS TIMESTAMP)
-    {% else %}    
+    {% if date_type %}
         CAST({{ column_str }} AS {{ date_type }})
+    {% else %}    
+        CAST({{ column_str }} AS TIMESTAMP)
     {% endif %}
 
     {%- if alias %} AS {{ alias }} {%- endif %}
