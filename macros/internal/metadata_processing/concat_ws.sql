@@ -47,3 +47,14 @@ CONCAT(
     {{ automate_dv.default__concat_ws(string_list=string_list, separator=separator) }}
 
 {%- endmacro -%}
+
+{%- macro teradata__concat_ws(string_list, separator="||") -%}
+
+CONCAT(
+{%- for str in string_list %}
+    {{ str }}
+{%- if not loop.last %}, '{{ separator }}', {%- endif -%}
+{%- endfor %}
+)
+
+{%- endmacro -%}

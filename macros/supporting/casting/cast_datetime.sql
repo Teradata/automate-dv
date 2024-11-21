@@ -9,7 +9,7 @@
         {%- set column_str -%} '{{ column_str }}' {%- endset -%}
     {%- endif -%}
 
-    {%- set date_type = date_type | lower -%}
+    {% set date_type = date_type | lower %}
 
     {{ return(adapter.dispatch('cast_datetime', 'automate_dv')(column_str=column_str, as_string=as_string, alias=alias, date_type=date_type)) }}
 {%- endmacro -%}
@@ -63,6 +63,14 @@
 {%- macro postgres__cast_datetime(column_str, as_string=false, alias=none, date_type=none) -%}
 
     to_char(timestamp {{ column_str }}, 'YYYY-MM-DD HH24:MI:SS.MS')::timestamp
+
+    {%- if alias %} AS {{ alias }} {%- endif %}
+
+{%- endmacro -%}
+
+{%- macro teradata__cast_datetime(column_str, as_string=false, alias=none, date_type=none) -%}
+
+    CAST({{ column_str }} AS TIMESTAMP)
 
     {%- if alias %} AS {{ alias }} {%- endif %}
 

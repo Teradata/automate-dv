@@ -86,3 +86,10 @@
     COALESCE({{ col_name }}, '{{ default_value }}') AS {{ col_name }}
 
 {%- endmacro -%}
+
+{%- macro teradata__null_column_sql(col_name, default_value) -%}
+
+    {{ col_name }} AS {{ col_name ~ "_ORIGINAL" }},
+    COALESCE({{ col_name }}, '{{ default_value }}') AS {{ col_name }}
+
+{%- endmacro -%}
