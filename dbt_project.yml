@@ -1,4 +1,4 @@
-name: teradata_automate_dv
+name: automate_dv
 version: 0.11.0
 require-dbt-version: [ ">=1.0.0", "<2.0.0" ]
 config-version: 2

@@ -1,8 +1,8 @@
 {%- macro control_snap_v0(start_date, daily_snapshot_time, sdts_alias=none, end_date=none) -%}
 
-    {%- set sdts_alias = teradata_automate_dv.replace_standard(sdts_alias, 'teradata_automate_dv.sdts_alias', 'sdts') -%}
+    {%- set sdts_alias = automate_dv.replace_standard(sdts_alias, 'automate_dv.sdts_alias', 'sdts') -%}
 
-    {{ return (adapter.dispatch('control_snap_v0', 'teradata_automate_dv')(start_date=start_date,
+    {{ return (adapter.dispatch('control_snap_v0', 'automate_dv')(start_date=start_date,
                                                             daily_snapshot_time=daily_snapshot_time,
                                                             sdts_alias=sdts_alias,
                                                             end_date=end_date)) }}
@@ -11,7 +11,7 @@
 
 {%- macro teradata__control_snap_v0(start_date, daily_snapshot_time, sdts_alias, end_date=none) -%}
 
-{%- set timestamp_format = teradata_automate_dv.timestamp_format() -%}
+{%- set timestamp_format = automate_dv.timestamp_format() -%}
 {%- set start_date = start_date | replace('00:00:00', daily_snapshot_time) -%}
 
 WITH initial_timestamps AS (
