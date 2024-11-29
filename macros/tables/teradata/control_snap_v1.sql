@@ -8,7 +8,7 @@
 
 {%- endmacro -%}
 
-{%- macro teradata__control_snap_v1(control_snap_v0, log_logic, sdts_alias) -%}
+{%- macro default__control_snap_v1(control_snap_v0, log_logic, sdts_alias) -%}
 
 {# Sample intervals
    {%-set log_logic = {'daily': {'duration': 3,
@@ -163,5 +163,16 @@ active_logic_combined AS (
 )
 
 SELECT * FROM active_logic_combined
+
+{%- endmacro -%}
+
+
+{%- macro teradata__control_snap_v1(control_snap_v0, log_logic, sdts_alias) -%}
+
+    {{- automate_dv.default__control_snap_v1(
+                                    control_snap_v0 = control_snap_v0, 
+                                    log_logic = log_logic, 
+                                    sdts_alias = sdts_alias
+                                    ) -}}
 
 {%- endmacro -%}

@@ -66,3 +66,13 @@ SELECT * FROM enriched_timestamps
 {%- endmacro -%}
 
 
+{%- macro default__control_snap_v0(start_date, daily_snapshot_time, sdts_alias, end_date=none) -%}
+
+    {{- automate_dv.teradata__control_snap_v0(
+                                    start_date = start_date,
+                                    daily_snapshot_time = daily_snapshot_time,
+                                    sdts_alias = sdts_alias,
+                                    end_date = end_date
+                                    ) -}}
+
+{%- endmacro -%}
